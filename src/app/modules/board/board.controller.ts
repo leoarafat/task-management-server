@@ -2,6 +2,9 @@ import { Request, RequestHandler, Response } from 'express';
 import catchAsync from '../../../shared/catchasync';
 import { BoardService } from './board.service';
 import sendResponse from '../../../shared/sendResponse';
+import pick from '../../../shared/pick';
+import { boardFilterableFields } from './board.constants';
+import paginationFields from '../../../constants/pagination';
 
 //! Create Board
 const createBoard: RequestHandler = catchAsync(
@@ -17,6 +20,22 @@ const createBoard: RequestHandler = catchAsync(
     });
   },
 );
+//! Get boards
+const getBoards = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, boardFilterableFields);
+
+  const paginationOptions = pick(req.query, paginationFields);
+
+  const result = await BoardService.getBoards(filters, paginationOptions);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Category retrieved successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
 //! Update board
 const updateBoard: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
@@ -45,6 +64,7 @@ const deleteBoard = catchAsync(async (req: Request, res: Response) => {
 });
 export const BoardController = {
   createBoard,
+  getBoards,
   updateBoard,
   deleteBoard,
 };

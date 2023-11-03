@@ -6,3 +6,8 @@ export type IBoard = {
   boardColumns: 'Todo' | 'Doing' | 'Done';
   tasks: Types.ObjectId | ITask;
 };
+
+export type IBoardFilters = {
+  searchTerm?: string;
+  boardName?: string;
+};
