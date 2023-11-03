@@ -1,8 +1,9 @@
 import { Schema, model } from 'mongoose';
 import { BoardEnum } from './board.constants';
+import { IBoard } from './board.interface';
 
 // room Schema
-const BoardSchema = new Schema(
+const BoardSchema = new Schema<IBoard>(
   {
     boardName: {
       type: String,
@@ -29,4 +30,4 @@ const BoardSchema = new Schema(
     },
   },
 );
-export const Category = model('Board', BoardSchema);
+export const Board = model('Board', BoardSchema);
