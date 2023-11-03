@@ -1,1 +1,1 @@
-export const BoardEnum = ['Todo', 'Doing', 'DONE'];
+export const BoardEnum = ['Todo', 'Doing', 'Done'];

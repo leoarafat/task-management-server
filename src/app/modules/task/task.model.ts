@@ -29,4 +29,4 @@ const TaskSchema = new Schema<ITask>(
     },
   },
 );
-export const Service = model('Task', TaskSchema);
+export const Task = model('Task', TaskSchema);

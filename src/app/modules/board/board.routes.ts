@@ -22,9 +22,5 @@ router.patch(
   BoardController.updateBoard,
 );
 // router.get('/:id', CategoryController.getSIngleCategory);
-// router.delete(
-//   '/:id',
-//   auth(ENUM_USER_ROLE.ADMIN),
-//   CategoryController.deleteCategory,
-// );
+router.delete('/:id', auth(ENUM_USER_ROLE.USER), BoardController.deleteBoard);
 export const BoardRoutes = router;
