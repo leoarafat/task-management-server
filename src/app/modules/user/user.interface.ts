@@ -1,17 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { Model } from 'mongoose';
 
-export type UserName = {
-  firstName: string;
-  lastName: string;
-};
 export type IUser = {
   _id?: string;
-  name: UserName;
+  name: string;
   email: string;
-  phoneNumber: string;
   password: string;
-  address: string;
   role: string;
 
   // test: Types.ObjectId | ITest

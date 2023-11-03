@@ -4,50 +4,45 @@ import ApiError from '../../../errors/Apierror';
 import { IUser } from './user.interface';
 import User from './user.model';
 
+//! create user
 const createUser = async (userData: IUser): Promise<IUser | null> => {
-  const newUser = await User.create(userData);
+  const isEmailExist = await User.findOne({ email: userData.email });
 
+  if (isEmailExist) {
+    throw new ApiError(400, 'Email already exist');
+  }
+  const newUser = await User.create(userData);
   return newUser;
 };
-
-const getAllUsers = async (): Promise<IUser[]> => {
-  const users = await User.find({});
-  return users;
-};
-const getSingleUser = async (id: string): Promise<IUser | null> => {
+//! Get Single User
+const getSingleUser = async (id: any): Promise<IUser | null> => {
+  // console.log(user);
   const result = await User.findById(id);
-
+  // console.log(result);
   return result;
 };
-
+//! Update user
 const updateUser = async (
-  id: string,
+  id: any,
   payload: Partial<IUser>,
 ): Promise<IUser | null> => {
   const isExist = await User.findOne({ _id: id });
 
   if (!isExist) {
-    throw new ApiError(404, 'User not found !');
+    throw new ApiError(404, 'User does not found!');
   }
 
-  const { name, ...UserData } = payload;
+  const { ...UserData } = payload;
 
   const updatedUserData: Partial<IUser> = { ...UserData };
-
-  // dynamically handling
-
-  if (name && Object.keys(name).length > 0) {
-    Object.keys(name).forEach(key => {
-      const nameKey = `name.${key}` as keyof Partial<IUser>;
-      (updatedUserData as any)[nameKey] = name[key as keyof typeof name];
-    });
-  }
 
   const result = await User.findOneAndUpdate({ _id: id }, updatedUserData, {
     new: true,
   });
   return result;
 };
+
+//! Delete User
 const deleteUser = async (id: string): Promise<IUser | null> => {
   const result = await User.findByIdAndDelete(id);
 
@@ -55,7 +50,6 @@ const deleteUser = async (id: string): Promise<IUser | null> => {
 };
 export const UserService = {
   createUser,
-  getAllUsers,
   getSingleUser,
   updateUser,
   deleteUser,

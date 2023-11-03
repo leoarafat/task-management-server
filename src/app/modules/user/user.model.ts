@@ -6,46 +6,29 @@ import config from '../../../config';
 const UserSchema = new Schema<IUser, UserModel>(
   {
     name: {
-      firstName: {
-        type: String,
-        required: true,
-      },
-      lastName: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
     },
-    phoneNumber: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+
     password: {
       type: String,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
+
     role: {
       type: String,
-      required: true,
+      default: 'user',
     },
   },
   {
     timestamps: true,
     toJSON: {
       virtuals: true,
-      transform: function (_doc, ret) {
-        delete ret.password;
-        return ret;
-      },
     },
   },
 );
@@ -54,7 +37,7 @@ const UserSchema = new Schema<IUser, UserModel>(
 // Check if User exists
 UserSchema.statics.isUserExist = async function (
   email: string,
-): Promise<Pick<IUser, '_id' | 'password' | 'phoneNumber' | 'role'> | null> {
+): Promise<Pick<IUser, '_id' | 'password' | 'role'> | null> {
   return await User.findOne(
     { email },
     {
@@ -62,7 +45,6 @@ UserSchema.statics.isUserExist = async function (
       email: 1,
       password: 1,
       role: 1,
-      phoneNumber: 1,
     },
   );
 };

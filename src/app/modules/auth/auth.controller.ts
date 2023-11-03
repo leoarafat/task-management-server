@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { AuthService } from './auth.service';
 import config from '../../../config';
 import { ILoginUserResponse, IRefreshTokenResponse } from './auth.interface';
+import catchAsync from '../../../shared/catchasync';
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;

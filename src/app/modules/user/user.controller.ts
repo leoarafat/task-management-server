@@ -5,6 +5,7 @@ import sendResponse from '../../../shared/sendResponse';
 import { IUser } from './user.interface';
 import catchAsync from '../../../shared/catchasync';
 
+//! create user
 const createUser: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const { ...userData } = req.body;
@@ -20,15 +21,7 @@ const createUser: RequestHandler = catchAsync(
   },
 );
 
-const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  const result = await UserService.getAllUsers();
-  sendResponse<IUser[]>(res, {
-    statusCode: 200,
-    success: true,
-    message: 'User retrieved successfully',
-    data: result,
-  });
-});
+//! get single user
 const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const result = await UserService.getSingleUser(id);
@@ -39,6 +32,7 @@ const getSingleUser = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//! update user
 const updateUser = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updatedData = req.body;
@@ -50,6 +44,7 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//! delete user
 const deleteUser = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const result = await UserService.deleteUser(id);
@@ -62,7 +57,6 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
 });
 export const UserController = {
   createUser,
-  getAllUsers,
   getSingleUser,
   updateUser,
   deleteUser,
