@@ -9,3 +9,7 @@ export type ITask = {
   status: BoardEnum;
   board: Types.ObjectId | IBoard;
 };
+export type ITaskFilters = {
+  searchTerm?: string;
+  title?: string;
+};

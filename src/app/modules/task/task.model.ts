@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { ITask } from './task.interface';
 
-const TaskSchema = new Schema<ITask>(
+const TaskSchema = new Schema(
   {
     title: {
       type: String,

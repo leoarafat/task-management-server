@@ -102,7 +102,7 @@ const updateBoard = async (id: string, payload: any) => {
 
 //! Delete board
 const deleteBoard = async (id: string) => {
-  const board = await Board.findById({ _id: id });
+  const board = await Board.findByIdAndDelete({ _id: id });
   //   console.log(board);
   if (!board) {
     throw new ApiError(404, 'Board not found');
