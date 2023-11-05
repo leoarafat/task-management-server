@@ -23,10 +23,10 @@ const createTask: RequestHandler = catchAsync(
 //! Get Tasks
 const getTasks = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, taskFilterableFields);
-
+  const user = req.user;
   const paginationOptions = pick(req.query, paginationFields);
 
-  const result = await TaskService.getTasks(filters, paginationOptions);
+  const result = await TaskService.getTasks(filters, paginationOptions, user);
 
   sendResponse(res, {
     statusCode: 200,

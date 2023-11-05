@@ -5,7 +5,7 @@ import { TaskController } from './task.controller';
 
 const router = express.Router();
 
-router.get('/', auth(ENUM_USER_ROLE.USER), TaskController.getTasks);
+router.get('/my-tasks', auth(ENUM_USER_ROLE.USER), TaskController.getTasks);
 
 router.post(
   '/create-task',
@@ -13,7 +13,7 @@ router.post(
   auth(ENUM_USER_ROLE.USER),
   TaskController.createTask,
 );
-router.get('/my-tasks', auth(ENUM_USER_ROLE.USER), TaskController.getMyTasks);
+// router.get('/my-tasks', auth(ENUM_USER_ROLE.USER), TaskController.getMyTasks);
 router.patch(
   '/update-task/:id',
 

@@ -14,11 +14,14 @@ const createUser = async (userData: IUser): Promise<IUser | null> => {
   const newUser = await User.create(userData);
   return newUser;
 };
+//! Get Users
+const getUsers = async (): Promise<IUser[] | null> => {
+  const result = await User.find();
+  return result;
+};
 //! Get Single User
 const getSingleUser = async (id: any): Promise<IUser | null> => {
-  // console.log(user);
   const result = await User.findById(id);
-  // console.log(result);
   return result;
 };
 //! Update user
@@ -53,4 +56,5 @@ export const UserService = {
   getSingleUser,
   updateUser,
   deleteUser,
+  getUsers,
 };

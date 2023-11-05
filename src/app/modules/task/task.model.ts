@@ -20,6 +20,16 @@ const TaskSchema = new Schema(
       ref: 'Board',
       required: true,
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    assignedUsers: [
+      {
+        type: String,
+      },
+    ],
   },
   {
     timestamps: true,

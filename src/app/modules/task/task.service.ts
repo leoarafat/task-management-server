@@ -31,9 +31,10 @@ const createTask = async (payload: any) => {
 const getTasks = async (
   filters: ITaskFilters,
   paginationOptions: IPaginationOptions,
+  user: any,
 ): Promise<IGenericResponse<any[]>> => {
   const { searchTerm, ...filtersData } = filters;
-
+  console.log(user);
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
 
@@ -58,6 +59,9 @@ const getTasks = async (
     });
   }
 
+  if (user && user?.userId) {
+    andConditions.push({ user: user?.userId });
+  }
   const sortConditions: { [key: string]: SortOrder } = {};
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder;
@@ -85,7 +89,7 @@ const getTasks = async (
 };
 //! Get my tasks
 const getMyTasks = async (user: any) => {
-  const tasks = await Task.find({ user: user?.userId });
+  const tasks = await Task.find({ user: user?.userId }).populate('board');
 
   if (!tasks) {
     throw new ApiError(404, 'tasks not found');

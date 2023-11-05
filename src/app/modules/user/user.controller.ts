@@ -21,6 +21,16 @@ const createUser: RequestHandler = catchAsync(
   },
 );
 
+//! get users
+const getUsers = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.getUsers();
+  sendResponse<IUser[]>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'User retrieved successfully',
+    data: result,
+  });
+});
 //! get single user
 const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -60,4 +70,5 @@ export const UserController = {
   getSingleUser,
   updateUser,
   deleteUser,
+  getUsers,
 };

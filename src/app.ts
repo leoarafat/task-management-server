@@ -7,7 +7,13 @@ import { NotFoundHandler } from './errors/NotFoundHandler';
 
 export const app: Application = express();
 //cors
-app.use(cors({ origin: ['http://localhost:3000'], credentials: true }));
+app.use(
+  cors({
+    // origin: ['http://localhost:3000'],
+    origin: ['https://task-manager-liart-sigma.vercel.app'],
+    credentials: true,
+  }),
+);
 
 //parser
 app.use(express.json());

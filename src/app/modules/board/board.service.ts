@@ -14,8 +14,9 @@ import { boardSearchableFields } from './board.constants';
 
 //! Create board
 const createBoard = async (payload: any) => {
-  const { boardName } = payload;
-  const isExist = await Board.findOne({ boardName });
+  const { boardName, user } = payload;
+
+  const isExist = await Board.findOne({ boardName, user });
   if (isExist) {
     throw new ApiError(400, 'Already Exist this board');
   }
