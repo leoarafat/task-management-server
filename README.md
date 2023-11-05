@@ -48,16 +48,16 @@ Follow these steps to get the backend server up and running on your local machin
 
 The server exposes the following API endpoints:
 
-POST /api/v1/user/signup: User registration.
-POST /api/v1/auth/login: User login.
-GET /api/v1/board/my-boards: Retrieve all boards.
-POST /api/v1/board/create-board: Create a new board.
-PATCH /api/v1/board/:id: Update a specific board.
-DELETE /api/v1/board/:id: Delete a specific board.
-POST /api/v1/task/create-task: Create a new task for a specific board.
-GET /api/v1/task/my-tasks: Retrieve a specific task.
-PATCH /api/v1/task/taskId: Update a specific task.
-DELETE /api/v1/task/taskId: Delete a specific task.
+1. POST /api/v1/user/signup: User registration.
+2. POST /api/v1/auth/login: User login.
+3. GET /api/v1/board/my-boards: Retrieve all boards.
+4. POST /api/v1/board/create-board: Create a new board.
+5. PATCH /api/v1/board/:id: Update a specific board.
+6. DELETE /api/v1/board/:id: Delete a specific board.
+7. POST /api/v1/task/create-task: Create a new task for a specific board.
+8. GET /api/v1/task/my-tasks: Retrieve a specific task.
+9. PATCH /api/v1/task/taskId: Update a specific task.
+10. DELETE /api/v1/task/taskId: Delete a specific task.
 
 ### Authentication
 
