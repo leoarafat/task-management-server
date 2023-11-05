@@ -6,12 +6,19 @@ Task Management Backend Server is the server-side component of the Task Manageme
 
 ## Table of Contents
 
+- [Technology](#technology)
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [API Endpoints](#api-endpoints)
 - [Authentication](#authentication)
+
+## Technology:
+
+#### Backend: Node Js, Express Js, Typescript, Mongoose, MongoDB, JWT, ZOD, Bcrypt Js
+
+#### Front-end: Next Js, Typescript, Tailwind CSS, Redux RTK Query, AntD(For Dashboard)
 
 ## Features
 
