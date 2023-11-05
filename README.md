@@ -2,6 +2,8 @@
 
 Task Management Backend Server is the server-side component of the Task Management Website, providing the backend logic and API endpoints to manage boards, tasks, user authentication, and authorization.
 
+### Backend Live URL: https://task-management-server-lilac.vercel.app
+
 ## Table of Contents
 
 - [Features](#features)
