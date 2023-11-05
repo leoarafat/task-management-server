@@ -13,6 +13,7 @@ router.post(
   auth(ENUM_USER_ROLE.USER),
   TaskController.createTask,
 );
+router.get('/my-tasks', auth(ENUM_USER_ROLE.USER), TaskController.getMyTasks);
 router.patch(
   '/update-task/:id',
 

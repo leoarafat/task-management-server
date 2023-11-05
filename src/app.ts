@@ -7,7 +7,7 @@ import { NotFoundHandler } from './errors/NotFoundHandler';
 
 export const app: Application = express();
 //cors
-app.use(cors());
+app.use(cors({ origin: ['http://localhost:3000'], credentials: true }));
 
 //parser
 app.use(express.json());

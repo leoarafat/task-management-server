@@ -36,6 +36,17 @@ const getTasks = catchAsync(async (req: Request, res: Response) => {
     data: result.data,
   });
 });
+//! Get my boards
+const getMyTasks = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
+  const result = await TaskService.getMyTasks(user);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'My Tasks retrieved successfully',
+    data: result,
+  });
+});
 //! Update board
 const updateTask: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
@@ -67,4 +78,5 @@ export const TaskController = {
   getTasks,
   updateTask,
   deleteTask,
+  getMyTasks,
 };

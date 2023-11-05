@@ -31,9 +31,20 @@ const getBoards = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Category retrieved successfully',
+    message: 'Board retrieved successfully',
     meta: result.meta,
     data: result.data,
+  });
+});
+//! Get my boards
+const getMyBoards = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
+  const result = await BoardService.getMyBoards(user);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'My Board retrieved successfully',
+    data: result,
   });
 });
 //! Update board
@@ -67,4 +78,5 @@ export const BoardController = {
   getBoards,
   updateBoard,
   deleteBoard,
+  getMyBoards,
 };

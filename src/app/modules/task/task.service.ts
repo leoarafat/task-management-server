@@ -83,7 +83,15 @@ const getTasks = async (
     data: result,
   };
 };
+//! Get my tasks
+const getMyTasks = async (user: any) => {
+  const tasks = await Task.find({ user: user?.userId });
 
+  if (!tasks) {
+    throw new ApiError(404, 'tasks not found');
+  }
+  return tasks;
+};
 //!Update Task
 const updateTask = async (id: string, payload: any) => {
   const isExist = await Task.findById({ _id: id });
@@ -118,4 +126,5 @@ export const TaskService = {
   updateTask,
   deleteTask,
   getTasks,
+  getMyTasks,
 };

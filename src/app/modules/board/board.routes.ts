@@ -8,6 +8,11 @@ import { BoardValidation } from './board.validations';
 const router = express.Router();
 
 router.get('/', auth(ENUM_USER_ROLE.USER), BoardController.getBoards);
+router.get(
+  '/my-boards',
+  auth(ENUM_USER_ROLE.USER),
+  BoardController.getMyBoards,
+);
 
 router.post(
   '/create-board',

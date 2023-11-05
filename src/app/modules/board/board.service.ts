@@ -19,7 +19,7 @@ const createBoard = async (payload: any) => {
   if (isExist) {
     throw new ApiError(400, 'Already Exist this board');
   }
-  const result = await Board.create(payload);
+  const result = (await Board.create(payload)).populate('user');
 
   return result;
 };
@@ -78,6 +78,15 @@ const getBoards = async (
     data: result,
   };
 };
+//! Get my boards
+const getMyBoards = async (user: any) => {
+  const board = await Board.find({ user: user?.userId });
+
+  if (!board) {
+    throw new ApiError(404, 'Board not found');
+  }
+  return board;
+};
 
 //!Update Board
 const updateBoard = async (id: string, payload: any) => {
@@ -130,4 +139,5 @@ export const BoardService = {
   updateBoard,
   deleteBoard,
   getBoards,
+  getMyBoards,
 };

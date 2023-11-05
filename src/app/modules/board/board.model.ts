@@ -15,7 +15,11 @@ const BoardSchema = new Schema<IBoard>(
       enum: BoardEnum,
       require: true,
     },
-
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
     tasks: [
       {
         type: Schema.Types.ObjectId,
